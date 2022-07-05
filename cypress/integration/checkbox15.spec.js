@@ -1,0 +1,30 @@
+/// <reference types="cypress" />
+
+describe('Work with basic elements', () => {
+    before(() => {
+        cy.visit('https://wcaquino.me/cypress/componentes.html')
+    })
+
+    beforeEach(() => {
+        cy.reload()
+    })
+
+    it('RadioButton', () => {
+        cy.get('#formSexoFem')
+            .click()
+            .should('be.checked')
+        
+        cy.get('#formSexoMasc').should('not.be.checked')   
+        
+        cy.get("[name='formSexo']").should('have.length', 2)
+    })
+
+    it.only('Checkbox', () => {
+        cy.get('#formComidaPizza')
+            .click()
+            .should('be.checked')
+
+        cy.get('[name="formComidaFavorita"]').click({multiple:true})
+    })
+
+})
